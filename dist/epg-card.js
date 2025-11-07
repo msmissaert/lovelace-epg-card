@@ -55,7 +55,14 @@ class EPGCardEditor extends LitElement {
         color: var(--secondary-text-color);
         margin-top: 4px;
         margin-bottom: 12px;
-      }      
+      }
+      .timeline-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: row;
+      -webkit-overflow-scrolling: touch;
+      }
     `;
   }
 
@@ -227,7 +234,8 @@ class EPGCard extends HTMLElement {
     const harmonyEntityId = this.config.harmony_entity_id || "remote.harmony_hub";
     const harmonyDeviceId = this.config.harmony_device_id || "79382863";
     const manualChannels = this.config.channels || {};
-
+    const timelineContainer = document.createElement('div');
+    timelineContainer.classList.add('timeline-container');
     // Font logic
     let fontFamily = 'Quicksand, sans-serif';
     if (this.config.font_family === 'Custom' && this.config.custom_font_family && this.config.custom_font_family.trim()) {
